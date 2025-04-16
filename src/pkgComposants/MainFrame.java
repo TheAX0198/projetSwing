@@ -1,3 +1,4 @@
+package pkgComposants;
 
 import java.awt.Dimension;
 import javax.swing.JFrame;
@@ -6,7 +7,7 @@ public class MainFrame extends JFrame {
 
     //ImageIcon imgIco;
 
-    MainFrame() {
+    public MainFrame() {
 
         //imgIco = new ImageIcon();
 
@@ -23,6 +24,7 @@ public class MainFrame extends JFrame {
     }
 
     public void afficherMenu() {
+        this.pack();
         this.setVisible(true);
     }
 

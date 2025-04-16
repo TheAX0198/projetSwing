@@ -3,5 +3,5 @@ Projet en "Programmation Orientée Objet"
 
 - Sujet : Java Swing
 - Contributeurs : 
-  - Lanja Rakotomalala $$&*
+  - Lanja Rakotomalala
   - Xavier Guimond

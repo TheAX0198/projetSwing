@@ -1,5 +1,7 @@
 import javax.swing.SwingUtilities;
 
+import pkgComposants.MainFrame;
+
 public class Main {
 
     static MainFrame menuPrincipal;
