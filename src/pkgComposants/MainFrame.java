@@ -19,13 +19,6 @@ public class MainFrame extends JFrame {
         //this.getContentPane().setBackground(Color.BLACK);
         //this.setIconImage(imgIco.getImage());
 
-        // Ajout des composants //
-
-    }
-
-    public void afficherMenu() {
-        this.pack();
-        this.setVisible(true);
     }
 
 }

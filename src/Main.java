@@ -1,10 +1,10 @@
 import javax.swing.SwingUtilities;
 
-import pkgComposants.MainFrame;
+import pkgMVC.Controleur;
 
 public class Main {
 
-    static MainFrame menuPrincipal;
+    static Controleur controleur;
 
     public static void main(String[] args) throws Exception {
 
@@ -12,8 +12,7 @@ public class Main {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                menuPrincipal = new MainFrame();
-                menuPrincipal.afficherMenu();
+                controleur = new Controleur();
             }
             
         });
