@@ -2,12 +2,11 @@ package pkgComposants.pkgNavBar;
 
 import java.awt.Color;
 import java.awt.event.ActionListener;
-
 import javax.swing.JMenuItem;
 
-public class ApparenceSombre extends JMenuItem {
+public class BoutonApparence extends JMenuItem {
 
-    public ApparenceSombre(String texte, ActionListener aL) {
+    public BoutonApparence(String texte, ActionListener aL) {
         this.setText(texte);
         this.addActionListener(aL);
     }

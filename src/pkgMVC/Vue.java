@@ -4,14 +4,10 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-
 import javax.swing.JPanel;
-import javax.swing.border.Border;
-
 import pkgComposants.MainFrame;
 import pkgComposants.MainPanel;
-import pkgComposants.pkgNavBar.ApparenceLumineux;
-import pkgComposants.pkgNavBar.ApparenceSombre;
+import pkgComposants.pkgNavBar.BoutonApparence;
 import pkgComposants.pkgNavBar.MenuApparence;
 import pkgComposants.pkgNavBar.NavBar;
 import pkgComposants.pkgPanelBoutons.PanelControle;
@@ -23,8 +19,8 @@ public class Vue {
     MainFrame mainFrame;
     MainPanel mainPanel;
 
-    ApparenceLumineux apparenceLumineux;
-    ApparenceSombre apparenceSombre;
+    BoutonApparence apparenceLumineux;
+    BoutonApparence apparenceSombre;
     MenuApparence menuApparence;
     NavBar navBar;
 
@@ -36,7 +32,7 @@ public class Vue {
 
     PanelListe panelListe;
 
-    public Vue(ApparenceLumineux aL, ApparenceSombre aS) {
+    public Vue(BoutonApparence aL, BoutonApparence aS) {
         this.apparenceLumineux = aL;
         this.apparenceSombre = aS;
 
@@ -63,7 +59,7 @@ public class Vue {
         navBar.add(menuApparence);
         mainFrame.setJMenuBar(navBar);
 
-        // Container Panel
+        // Container Panel (Controle + Graphique)
         containerControleGraphique.setPreferredSize(new Dimension(350, 500));
         containerControleGraphique.setLayout(new GridLayout(2, 1));
         containerControleGraphique.add(panelControle);
