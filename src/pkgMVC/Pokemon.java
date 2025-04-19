@@ -6,22 +6,19 @@ public class Pokemon implements Comparable<Pokemon> {
     private String type;
     private int atk;
     private int pv;
-    private String imgUrl;
 
     public Pokemon() {
         this.nom = "Pokemon inconnu";
         this.type = "Normal";
         this.atk = 0;
         this.pv = 0;
-        this.imgUrl = null;
     }
 
-    public Pokemon(String nom, String type, int atk, int pv, String imgUrl) {
+    public Pokemon(String nom, String type, int atk, int pv) {
         this.nom = nom;
         this.type = type;
         this.atk = atk;
         this.pv = pv;
-        this.imgUrl = imgUrl;
     }
 
     public String getNom() {
@@ -56,18 +53,12 @@ public class Pokemon implements Comparable<Pokemon> {
         this.pv = pv;
     }
 
-    public String getImgUrl() {
-        return imgUrl;
-    }
-
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
-    }
-
     @Override
     public int compareTo(Pokemon p) {
         return p.getNom().compareTo(getNom());
     }
+
+    
 
     @Override
     public int hashCode() {
@@ -77,7 +68,6 @@ public class Pokemon implements Comparable<Pokemon> {
         result = prime * result + ((type == null) ? 0 : type.hashCode());
         result = prime * result + atk;
         result = prime * result + pv;
-        result = prime * result + ((imgUrl == null) ? 0 : imgUrl.hashCode());
         return result;
     }
 
@@ -85,13 +75,12 @@ public class Pokemon implements Comparable<Pokemon> {
         return getNom().equalsIgnoreCase(p.getNom()) &&
                getType().equalsIgnoreCase(p.getType()) &&
                getAtk() == p.getAtk() &&
-               getPv() == p.getPv() &&
-               getImgUrl().equals(p.getImgUrl());
+               getPv() == p.getPv();
     }
 
     @Override
     public String toString() {
-        return "Pokemon [nom=" + nom + ", type=" + type + ", atk=" + atk + ", pv=" + pv + ", imgUrl=" + imgUrl + "]";
+        return "Pokemon [nom=" + nom + ", type=" + type + ", atk=" + atk + ", pv=" + pv + "]";
     }
 
 }
