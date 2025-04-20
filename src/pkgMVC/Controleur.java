@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 
 import pkgComposants.pkgNavBar.BoutonApparence;
 import pkgComposants.pkgPanelBoutons.BoutonAction;
-import pkgComposants.pkgPanelListe.Checkbox;
 
 public class Controleur {
 
@@ -17,7 +16,7 @@ public class Controleur {
 
     private BoutonAction boutonAjouter;
     private BoutonAction boutonReset;
-    private Checkbox checkbox;
+    
 
     public Controleur() {
         apparenceSombre = new BoutonApparence("Sombre", modifApparence(0));
@@ -48,9 +47,12 @@ public class Controleur {
         ActionListener aL = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Pokemon newPoke = modele.randomPoke();
+
                 int x = modele.randInt(5, 250);
                 int y = modele.randInt(5, 150);
-                vue.paintPoke(modele.randomPoke(), x, y);
+                vue.paintPoke(newPoke, x, y);
+                vue.ajoutPoke(newPoke);
             }
         };
         return aL;
@@ -61,7 +63,7 @@ public class Controleur {
         ActionListener aL = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                vue.resetGraphique();
+                vue.resetGraphiqueListe();
                 //modele.doSmth()
             }
         };

@@ -12,6 +12,16 @@ public class PanelControle extends JPanel {
         this.setBackground(new Color(0, 255, 0)); // Pour tester
         this.setPreferredSize(new Dimension(350, 250));
         this.setBorder(BorderFactory.createTitledBorder("Boutons contrôle"));
+
+        setLumineux();
+    }
+
+    public void setSombre() {
+        this.setBackground(Color.BLACK);
+    }
+
+    public void setLumineux() {
+        this.setBackground(Color.WHITE);
     }
 
 }

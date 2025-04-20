@@ -1,14 +1,11 @@
 package pkgMVC;
 
-import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.GridLayout;
 
 import javax.swing.JPanel;
-import javax.swing.JTable;
 
 import pkgComposants.MainFrame;
 import pkgComposants.MainPanel;
@@ -19,7 +16,10 @@ import pkgComposants.pkgPanelBoutons.BoutonAction;
 import pkgComposants.pkgPanelBoutons.LabelInfo;
 import pkgComposants.pkgPanelBoutons.PanelControle;
 import pkgComposants.pkgPanelGraphique.PanelGraphique;
+import pkgComposants.pkgPanelListe.ListeDefaultModel;
 import pkgComposants.pkgPanelListe.PanelListe;
+import pkgComposants.pkgPanelListe.PokeListe;
+import pkgComposants.pkgPanelListe.PokeScrollPane;
 
 public class Vue {
 
@@ -34,6 +34,7 @@ public class Vue {
     JPanel containerControleGraphique;
 
     PanelControle panelControle;
+    JPanel containerBoutonsActions;
     BoutonAction boutonAjouter;
     BoutonAction boutonReset;
     LabelInfo labelInfo;
@@ -41,7 +42,9 @@ public class Vue {
     PanelGraphique panelGraphique;
 
     PanelListe panelListe;
-    JTable liste;
+    ListeDefaultModel listeDefaultModel;
+    PokeListe liste;
+    PokeScrollPane scrollPane;
 
     public Vue(BoutonApparence aL, BoutonApparence aS, BoutonAction bA, BoutonAction bR) {
         this.apparenceLumineux = aL;
@@ -55,6 +58,7 @@ public class Vue {
         this.containerControleGraphique = new JPanel();
 
         this.panelControle = new PanelControle();
+        this.containerBoutonsActions = new JPanel(new GridLayout(1, 2));
         this.boutonAjouter = bA;
         this.boutonReset = bR;
         this.labelInfo = new LabelInfo();
@@ -62,7 +66,9 @@ public class Vue {
         this.panelGraphique = new PanelGraphique();
 
         this.panelListe = new PanelListe();
-        
+        this.listeDefaultModel = new ListeDefaultModel();
+        this.liste = new PokeListe(listeDefaultModel);
+        this.scrollPane = new PokeScrollPane(liste);
 
         initialiser();
     }
@@ -75,12 +81,12 @@ public class Vue {
         mainFrame.setJMenuBar(navBar);
 
         // PanelListe
-        
+        panelListe.add(scrollPane);
 
         // PanelControle
-        panelControle.setLayout(new GridLayout(2, 2));
-        panelControle.add(boutonAjouter);
-        panelControle.add(boutonReset);
+        containerBoutonsActions.add(boutonAjouter);
+        containerBoutonsActions.add(boutonReset);
+        panelControle.add(containerBoutonsActions);
         panelControle.add(labelInfo);
 
         // Container Panel (Controle + Graphique)
@@ -98,16 +104,25 @@ public class Vue {
 
     }
 
+    // Action Vue des boutons Ajouter et Reset //
     public void paintPoke(Pokemon poke, int x, int y) {
         panelGraphique.c = new Color(y);
         panelGraphique.coo = new int[]{x, y};
         panelGraphique.updateGraphique(poke);
     }
 
-    public void resetGraphique() {
-        panelGraphique.resetGraphique();
+    public void ajoutPoke(Pokemon poke) {
+        Object[] pokeData = new Object[]{poke.getNom(), poke.getType(), poke.getAtk(), poke.getPv()};
+        listeDefaultModel.addRow(pokeData);
     }
 
+    public void resetGraphiqueListe() {
+        panelGraphique.resetGraphique();
+        listeDefaultModel.setRowCount(0);
+    }
+    // ####################################### //
+
+    // Action Apparence Sombre et Lumineux //
     public void changerApparence(int numAppar) {
         if(numAppar == 0) { // Sombre
             mainPanel.setBackground(Color.BLACK);
@@ -115,6 +130,14 @@ public class Vue {
             menuApparence.setSombre();
             apparenceLumineux.setSombre();
             apparenceSombre.setSombre();
+            panelControle.setSombre();
+            panelGraphique.setSombre();
+            panelListe.setSombre();
+            liste.setSombre();
+            scrollPane.setSombre();
+            boutonAjouter.setSombre();
+            boutonReset.setSombre();
+            labelInfo.setSombre();
         }
         else { // Lumineux
             mainPanel.setBackground(Color.WHITE);
@@ -122,8 +145,18 @@ public class Vue {
             menuApparence.setLumineux();
             apparenceLumineux.setLumineux();
             apparenceSombre.setLumineux();
+            panelControle.setLumineux();
+            panelControle.setLumineux();
+            panelGraphique.setLumineux();
+            panelListe.setLumineux();
+            liste.setLumineux();
+            scrollPane.setLumineux();
+            boutonAjouter.setLumineux();
+            boutonReset.setLumineux();
+            labelInfo.setLumineux();
         }
     }
+    // #################################### //
 
     public void afficherMainFrame() {
         mainFrame.pack();

@@ -1,10 +1,14 @@
 package pkgComposants.pkgPanelListe;
 
-import javax.swing.DefaultListModel;
+import javax.swing.table.DefaultTableModel;
 
-import pkgMVC.Pokemon;
+public class ListeDefaultModel extends DefaultTableModel {
 
-public class ListeDefaultModel extends DefaultListModel<Pokemon> {
-
+    public ListeDefaultModel() {
+        this.addColumn("Nom");
+        this.addColumn("Type");
+        this.addColumn("Atk");
+        this.addColumn("Pv");
+    }
 
 }
