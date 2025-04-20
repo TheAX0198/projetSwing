@@ -11,5 +11,4 @@ public class Modele implements DBPoke {
     public int randInt(int min, int max) {
         return (int) Math.round(Math.random() * (max - min)) + min;
     }
-
 }

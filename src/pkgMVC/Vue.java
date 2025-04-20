@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-
 import javax.swing.JPanel;
 
 import pkgComposants.MainFrame;
@@ -16,6 +15,7 @@ import pkgComposants.pkgPanelBoutons.BoutonAction;
 import pkgComposants.pkgPanelBoutons.LabelInfo;
 import pkgComposants.pkgPanelBoutons.PanelControle;
 import pkgComposants.pkgPanelGraphique.PanelGraphique;
+import pkgComposants.pkgPanelListe.CheckBoxHeaderRenderer;
 import pkgComposants.pkgPanelListe.ListeDefaultModel;
 import pkgComposants.pkgPanelListe.PanelListe;
 import pkgComposants.pkgPanelListe.PokeListe;
@@ -68,6 +68,22 @@ public class Vue {
         this.panelListe = new PanelListe();
         this.listeDefaultModel = new ListeDefaultModel();
         this.liste = new PokeListe(listeDefaultModel);
+
+        // renderer personnalisé pour le header de la liste
+        for (int i = 0; i < liste.getColumnCount(); i++) {
+            String titre = liste.getColumnName(i);//Récupération du titre
+            liste.getColumnModel().getColumn(i).setHeaderRenderer(new CheckBoxHeaderRenderer(titre));// rendrerer le header (checkbox + titre)
+        }
+
+        //gestion sur le click de la souris sur le header de la liste
+        liste.getTableHeader().addMouseListener(new java.awt.event.MouseAdapter() {
+            // Action de la souris sur le header de la liste 
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                int col = liste.columnAtPoint(e.getPoint());//trouve la colonne sur laquelle on a cliqué
+                liste.sortByColumn(col);//trie la liste selon la colonne cliquée
+            }
+        });
+
         this.scrollPane = new PokeScrollPane(liste);
 
         initialiser();
@@ -120,6 +136,7 @@ public class Vue {
         panelGraphique.resetGraphique();
         listeDefaultModel.setRowCount(0);
     }
+
     // ####################################### //
 
     // Action Apparence Sombre et Lumineux //
@@ -162,5 +179,4 @@ public class Vue {
         mainFrame.pack();
         mainFrame.setVisible(true);
     }
-
 }

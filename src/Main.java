@@ -14,8 +14,6 @@ public class Main {
             public void run() {
                 controleur = new Controleur();
             }
-            
         });
-
     }
 }

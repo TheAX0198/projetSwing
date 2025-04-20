@@ -58,8 +58,6 @@ public class Pokemon implements Comparable<Pokemon> {
         return p.getNom().compareTo(getNom());
     }
 
-    
-
     @Override
     public int hashCode() {
         final int prime = 31;
