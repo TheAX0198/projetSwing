@@ -22,7 +22,6 @@ public class PanelGraphique extends JPanel {
     private String nomBackground;
 
     public PanelGraphique() {
-        this.setBackground(new Color(0, 0, 255)); // Pour tester
         this.setPreferredSize(new Dimension(350, 250));
         
         setLumineux();

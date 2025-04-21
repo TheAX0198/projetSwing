@@ -12,10 +12,12 @@ import pkgComposants.pkgNavBar.BoutonApparence;
 import pkgComposants.pkgNavBar.MenuApparence;
 import pkgComposants.pkgNavBar.NavBar;
 import pkgComposants.pkgPanelBoutons.BoutonAction;
+import pkgComposants.pkgPanelBoutons.LabelDetailPoke;
 import pkgComposants.pkgPanelBoutons.LabelInfo;
 import pkgComposants.pkgPanelBoutons.PanelControle;
 import pkgComposants.pkgPanelGraphique.PanelGraphique;
 import pkgComposants.pkgPanelListe.CheckBoxHeaderRenderer;
+import pkgComposants.pkgPanelListe.LabelInfoListe;
 import pkgComposants.pkgPanelListe.ListeDefaultModel;
 import pkgComposants.pkgPanelListe.PanelListe;
 import pkgComposants.pkgPanelListe.PokeListe;
@@ -23,28 +25,31 @@ import pkgComposants.pkgPanelListe.PokeScrollPane;
 
 public class Vue {
 
-    MainFrame mainFrame;
-    MainPanel mainPanel;
+    private MainFrame mainFrame;
+    private MainPanel mainPanel;
 
-    BoutonApparence apparenceLumineux;
-    BoutonApparence apparenceSombre;
-    MenuApparence menuApparence;
-    NavBar navBar;
+    private BoutonApparence apparenceLumineux;
+    private BoutonApparence apparenceSombre;
+    private MenuApparence menuApparence;
+    private NavBar navBar;
 
-    JPanel containerControleGraphique;
+    private JPanel containerControleGraphique;
 
-    PanelControle panelControle;
-    JPanel containerBoutonsActions;
-    BoutonAction boutonAjouter;
-    BoutonAction boutonReset;
-    LabelInfo labelInfo;
+    private PanelControle panelControle;
+    private JPanel containerBoutonsActions;
+    private BoutonAction boutonAjouter;
+    private BoutonAction boutonReset;
+    private LabelInfo labelInfo;
+    private LabelDetailPoke labelDetailPoke;
 
-    PanelGraphique panelGraphique;
+    private PanelGraphique panelGraphique;
 
-    PanelListe panelListe;
-    ListeDefaultModel listeDefaultModel;
-    PokeListe liste;
-    PokeScrollPane scrollPane;
+    private PanelListe panelListe;
+    private ListeDefaultModel listeDefaultModel;
+    private PokeListe liste;
+    private PokeScrollPane listeScrollPane;
+    private LabelInfoListe labelInfoListe;
+    private PokeScrollPane labelScrollPane;
 
     public Vue(BoutonApparence aL, BoutonApparence aS, BoutonAction bA, BoutonAction bR) {
         this.apparenceLumineux = aL;
@@ -62,17 +67,20 @@ public class Vue {
         this.boutonAjouter = bA;
         this.boutonReset = bR;
         this.labelInfo = new LabelInfo();
+        this.labelDetailPoke = new LabelDetailPoke();
 
         this.panelGraphique = new PanelGraphique();
 
         this.panelListe = new PanelListe();
         this.listeDefaultModel = new ListeDefaultModel();
         this.liste = new PokeListe(listeDefaultModel);
+        this.labelInfoListe = new LabelInfoListe();
+        this.labelScrollPane = new PokeScrollPane(labelInfoListe, 260);
 
         // renderer personnalisé pour le header de la liste
         for (int i = 0; i < liste.getColumnCount(); i++) {
             String titre = liste.getColumnName(i);//Récupération du titre
-            liste.getColumnModel().getColumn(i).setHeaderRenderer(new CheckBoxHeaderRenderer(titre));// rendrerer le header (checkbox + titre)
+            liste.getColumnModel().getColumn(i).setHeaderRenderer(new CheckBoxHeaderRenderer(titre));// renderer le header (checkbox + titre)
         }
 
         //gestion sur le click de la souris sur le header de la liste
@@ -84,7 +92,7 @@ public class Vue {
             }
         });
 
-        this.scrollPane = new PokeScrollPane(liste);
+        this.listeScrollPane = new PokeScrollPane(liste, 200);
 
         initialiser();
     }
@@ -97,13 +105,15 @@ public class Vue {
         mainFrame.setJMenuBar(navBar);
 
         // PanelListe
-        panelListe.add(scrollPane);
+        panelListe.add(listeScrollPane);
+        panelListe.add(labelScrollPane);
 
         // PanelControle
         containerBoutonsActions.add(boutonAjouter);
         containerBoutonsActions.add(boutonReset);
         panelControle.add(containerBoutonsActions);
         panelControle.add(labelInfo);
+        panelControle.add(labelDetailPoke);
 
         // Container Panel (Controle + Graphique)
         containerControleGraphique.setPreferredSize(new Dimension(350, 500));
@@ -130,13 +140,16 @@ public class Vue {
     public void ajoutPoke(Pokemon poke) {
         Object[] pokeData = new Object[]{poke.getNom(), poke.getType(), poke.getAtk(), poke.getPv()};
         listeDefaultModel.addRow(pokeData);
+        labelDetailPoke.setDetail(poke);
+        labelInfoListe.updateInfos(liste);
     }
 
     public void resetGraphiqueListe() {
         panelGraphique.resetGraphique();
         listeDefaultModel.setRowCount(0);
+        labelDetailPoke.setText(null);
+        labelInfoListe.newStats();
     }
-
     // ####################################### //
 
     // Action Apparence Sombre et Lumineux //
@@ -151,10 +164,13 @@ public class Vue {
             panelGraphique.setSombre();
             panelListe.setSombre();
             liste.setSombre();
-            scrollPane.setSombre();
+            labelInfoListe.setSombre();
+            listeScrollPane.setSombre();
             boutonAjouter.setSombre();
             boutonReset.setSombre();
             labelInfo.setSombre();
+            labelDetailPoke.setSombre();
+            labelScrollPane.setSombre();
         }
         else { // Lumineux
             mainPanel.setBackground(Color.WHITE);
@@ -167,10 +183,13 @@ public class Vue {
             panelGraphique.setLumineux();
             panelListe.setLumineux();
             liste.setLumineux();
-            scrollPane.setLumineux();
+            labelInfoListe.setLumineux();
+            listeScrollPane.setLumineux();
             boutonAjouter.setLumineux();
             boutonReset.setLumineux();
             labelInfo.setLumineux();
+            labelDetailPoke.setLumineux();
+            labelScrollPane.setLumineux();
         }
     }
     // #################################### //

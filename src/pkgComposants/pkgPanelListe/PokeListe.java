@@ -21,7 +21,7 @@ public class PokeListe extends JTable  {
         this.setBackground(Color.WHITE);
 
         headers = this.getTableHeader();
-        headers.setBackground(Color.LIGHT_GRAY);
+        headers.setEnabled(false);
 
         setLumineux();
     }
@@ -29,17 +29,11 @@ public class PokeListe extends JTable  {
     public void setSombre() {
         this.setForeground(Color.WHITE);
         this.setBackground(Color.BLACK);
-
-        headers.setForeground(Color.WHITE);
-        headers.setBackground(Color.BLACK);
     }
 
     public void setLumineux() {
         this.setForeground(Color.BLACK);
         this.setBackground(Color.WHITE);
-
-        headers.setForeground(Color.BLACK);
-        headers.setBackground(Color.WHITE);
     }
 
     public void sortByColumn(int columnIndex) {

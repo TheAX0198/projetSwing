@@ -49,7 +49,7 @@ public class Controleur {
             public void actionPerformed(ActionEvent e) {
                 Pokemon newPoke = modele.randomPoke();
 
-                int x = modele.randInt(5, 250);
+                int x = modele.randInt(10, 250);
                 int y = modele.randInt(5, 150);
                 vue.paintPoke(newPoke, x, y);
                 vue.ajoutPoke(newPoke);

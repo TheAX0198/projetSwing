@@ -18,4 +18,5 @@ public class CheckBoxHeaderRenderer extends JCheckBox implements TableCellRender
     public Component getTableCellRendererComponent(JTable table, Object _titre, boolean isSelected, boolean hasFocus, int row, int column) {
         return this; // Retourne la checkbox elle-même étant composant d'en-tête
     }
+
 }

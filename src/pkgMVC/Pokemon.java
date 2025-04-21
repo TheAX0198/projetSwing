@@ -6,19 +6,22 @@ public class Pokemon implements Comparable<Pokemon> {
     private String type;
     private int atk;
     private int pv;
+    private String desc;
 
     public Pokemon() {
         this.nom = "Pokemon inconnu";
         this.type = "Normal";
         this.atk = 0;
         this.pv = 0;
+        this.desc = "Un pokemon mystère.";
     }
 
-    public Pokemon(String nom, String type, int atk, int pv) {
+    public Pokemon(String nom, String type, int atk, int pv, String desc) {
         this.nom = nom;
         this.type = type;
         this.atk = atk;
         this.pv = pv;
+        this.desc = desc;
     }
 
     public String getNom() {
@@ -53,6 +56,14 @@ public class Pokemon implements Comparable<Pokemon> {
         this.pv = pv;
     }
 
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
     @Override
     public int compareTo(Pokemon p) {
         return p.getNom().compareTo(getNom());
@@ -66,6 +77,7 @@ public class Pokemon implements Comparable<Pokemon> {
         result = prime * result + ((type == null) ? 0 : type.hashCode());
         result = prime * result + atk;
         result = prime * result + pv;
+        result = prime * result + ((desc == null) ? 0 : desc.hashCode());
         return result;
     }
 
@@ -73,7 +85,8 @@ public class Pokemon implements Comparable<Pokemon> {
         return getNom().equalsIgnoreCase(p.getNom()) &&
                getType().equalsIgnoreCase(p.getType()) &&
                getAtk() == p.getAtk() &&
-               getPv() == p.getPv();
+               getPv() == p.getPv() &&
+               getDesc().equals(p.getDesc());
     }
 
     @Override
