@@ -10,6 +10,7 @@ import javax.swing.table.TableModel;
 public class LabelInfoListe extends JLabel {
 
     public LabelInfoListe() {
+        this.setHorizontalAlignment(JLabel.CENTER);
         setLumineux();
         newStats();
     }
