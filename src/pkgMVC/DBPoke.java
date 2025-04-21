@@ -10,7 +10,7 @@ public interface DBPoke {
         new Pokemon("Bulbasaur", "Plante", 20, 70, "Il a une étrange graine plantée sur son dos.\nElle grandit avec lui depuis sa naissance."),
         new Pokemon("Camerupt", "Feu", 120, 140, "Il porte des volcans sur son dos.\nQuand le magma remonte, il\nfrissonne et entre en éruption."),
         new Pokemon("Charmander", "Feu", 30, 60, "La flamme de sa queue symbolise sa\nvitalité. Elle est intense quand il\nest en bonne santé."),
-        new Pokemon("Ditto", "Normal", 10, 170, "Il a la capacité de modifier sa\nstructure cellulaire pour prendre\nl’apparence de ce qu’il voit."),
+        new Pokemon("Ditto", "Normal", 10, 70, "Il a la capacité de modifier sa\nstructure cellulaire pour prendre\nl’apparence de ce qu’il voit."),
         new Pokemon("Grovyle", "Plante", 40, 80, "Il vit dans les jungles denses.\nIl saute de branche en branche\npour approcher de sa proie."),
         new Pokemon("Magikarp", "Eau", 10, 30, "Magicarpe est un Pokémon ridicule qui ne sait faire que\ndes ronds dans l’eau ou se laisser porter par les courants.\nSon comportement a donné envie aux savants d’étudier\nson cas."),
         new Pokemon("Metagross", "Acier", 200, 330, "Il est né de la fusion de plusieurs\nMétang. Ses quatre cerveaux en\nfont l’égal d’un superordinateur."),
