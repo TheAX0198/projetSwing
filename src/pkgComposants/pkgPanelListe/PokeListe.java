@@ -19,6 +19,7 @@ public class PokeListe extends JTable  {
     public PokeListe(ListeDefaultModel ldm) {
         this.setModel(ldm);
         this.setBackground(Color.WHITE);
+        this.setEnabled(false);
 
         headers = this.getTableHeader();
         headers.setEnabled(false);
